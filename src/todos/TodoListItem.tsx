@@ -8,7 +8,11 @@ interface TodoProps {
     onMarkCompleted: (arg0: number) => void;
 };
 
-const TodoItemContainer = styled.div`
+interface TodoItemContainerProps {
+    createdBy: number;
+}
+
+const TodoItemContainer = styled.div<TodoItemContainerProps>`
     background: #fff;
     border-radius: 8px;
     margin-top: 8px;

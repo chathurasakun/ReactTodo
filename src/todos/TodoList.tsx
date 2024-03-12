@@ -17,8 +17,8 @@ import { Todo } from '../shared-types/todo-type'
 import { ReduxState } from '../shared-types/redux-state';
 
 interface TodoListProps {
-  completedTodos: [Todo];
-  inCompletedTodos: [Todo];
+  completedTodos: Todo[];
+  inCompletedTodos: Todo[];
   onRemoveTodo: (arg0: number) => any;
   isLoading: boolean;
   startLoadingTodos: () => any;
