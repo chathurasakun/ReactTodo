@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { getCompletedTodos} from '../../store/selecters';
-import { Todo } from '../../shared-types/todo-type';
+import { getCompletedTodos} from '../src/store/selecters';
+import { Todo } from '../src/shared-types/todo-type';
 
 describe('The Completed Todos Selecter', () => {
     it('Returns completed todos', () => {
