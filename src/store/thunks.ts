@@ -9,7 +9,7 @@ import {
 import { Todo } from '../shared-types/todo-type';
 import { TodoResponse } from '../shared-types/todo-response';
 
-export const loadTodos = () => async (dispatch: any, getState: any) => {
+export const loadTodos = () => async (dispatch: any) => {
     try {
         dispatch(loadTodosInProgress());
         const response = await fetch('https://dummyjson.com/todos');
