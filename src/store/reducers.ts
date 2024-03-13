@@ -8,7 +8,7 @@ import {
 } from './actions'
 import { Todo } from '../shared-types/todo-type';
 
-const initialState = { isLoading: false, data: [] };
+const initialState = { isLoading: false, data: [] as Todo[]};
 
 export const todos = (state = initialState, action: any) => {
     const { type, payload } = action;
