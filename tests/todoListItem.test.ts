@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getBorderStyleForMyTodos } from '../TodoListItem';
+import { getBorderStyleForMyTodos } from '../src/todos/TodoListItem';
 
 describe('Get Border style for for my todo', () => {
     it('Get none when todo is not mine', () => {
