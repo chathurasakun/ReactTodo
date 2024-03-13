@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
     entry: './src/index.tsx',
@@ -9,8 +10,10 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                options: { presets: ["@babel/env"] }
+                loader: 'ts-loader',
+                options: { 
+                    transpileOnly: true
+                 }
             },
             {
                 test: /\.css$/,
@@ -18,7 +21,10 @@ module.exports = {
             }
         ]
     },
-    resolve: { extensions: ['*', '.js', '.jsx', '.ts', '.tsx'] },
+    resolve: { 
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json"})], 
+    },
     output: {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: '/dist/',
