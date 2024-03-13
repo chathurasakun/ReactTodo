@@ -1,7 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Todo } from '../shared-types/todo-type';
 
-const TodoItemContainer = styled.div`
+interface TodoProps {
+    todo: Todo;
+    onRemoveTodo: (arg0: number) => void;
+    onMarkCompleted: (arg0: number) => void;
+};
+
+interface TodoItemContainerProps {
+    createdBy: number;
+}
+
+const TodoItemContainer = styled.div<TodoItemContainerProps>`
     background: #fff;
     border-radius: 8px;
     margin-top: 8px;
@@ -10,10 +21,10 @@ const TodoItemContainer = styled.div`
     box-shadow: 0 4px 8px grey;
 `;
 
-export const getBorderStyleForMyTodos = (createdBy) => createdBy === 1 ? '2px solid red' : 'none'
+export const getBorderStyleForMyTodos = (createdBy: number) => createdBy === 1 ? '2px solid red' : 'none'
 
 const TodoItemContainerWithWarning = styled(TodoItemContainer)`
-    border-bottom: ${props => getBorderStyleForMyTodos(props.createdBy)};
+    border-bottom: ${(props: any) => getBorderStyleForMyTodos(props.createdBy)};
 `;
 
 const ButtonsContainer = styled.div`
@@ -41,7 +52,7 @@ const RemovedButton = styled(Button)`
     margin-left: 8px;
 `;
 
-const TodoListItem = ({ todo, onRemoveTodo, onMarkCompleted }) => {
+const TodoListItem = ({ todo, onRemoveTodo, onMarkCompleted }: TodoProps) => {
     const Container = todo.completed ? TodoItemContainer : TodoItemContainerWithWarning;
     return (
         <Container createdBy={todo.userId}>

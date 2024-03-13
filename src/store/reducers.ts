@@ -6,10 +6,11 @@ import {
     LOAD_TODOS_SUCCESS,
     LOAD_TODOS_FAILURE, 
 } from './actions'
+import { Todo } from '../shared-types/todo-type';
 
 const initialState = { isLoading: false, data: [] };
 
-export const todos = (state = initialState, action) => {
+export const todos = (state = initialState, action: any) => {
     const { type, payload } = action;
     switch (type) {
         case CREATE_TODO: {
@@ -18,12 +19,12 @@ export const todos = (state = initialState, action) => {
         }
         case REMOVE_TODO: {
             const { id } = payload;
-            const filteredTodos = state.data.filter(todo => todo.id !== id);
+            const filteredTodos = state.data.filter((todo: Todo) => todo.id !== id);
             return { ...state, data: filteredTodos };
         }
         case MARK_COMPLETED: {
             const { todo: updatedTodo } = payload;
-            const updatedTodos = state.data.map(todo => {
+            const updatedTodos = state.data.map((todo: Todo) => {
                 if(todo.id === updatedTodo.id) {
                     return updatedTodo;
                 }

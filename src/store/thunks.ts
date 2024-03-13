@@ -6,20 +6,22 @@ import {
     removeTodo,
     markCompleted
 } from './actions';
+import { Todo } from '../shared-types/todo-type';
+import { TodoResponse } from '../shared-types/todo-response';
 
-export const loadTodos = () => async (dispatch, getState) => {
+export const loadTodos = () => async (dispatch: any) => {
     try {
         dispatch(loadTodosInProgress());
         const response = await fetch('https://dummyjson.com/todos');
-        const jsonResponse = await response.json();
+        const jsonResponse = await response.json() as TodoResponse;
         dispatch(loadTodosSuccess(jsonResponse.todos));
-    } catch(e) {
+    } catch(e: any) {
         dispatch(loadTodosFailure());
         dispatch(displayAlert(e));
     }
 };
 
-export const createTodoRequest = (text) => async dispatch => {
+export const createTodoRequest = (text: string) => async (dispatch: any) => {
     try {
         const body = JSON.stringify({
             todo: text,
@@ -32,23 +34,23 @@ export const createTodoRequest = (text) => async dispatch => {
             method: 'POST',
         });
         const todo = await response.json();
-        dispatch(createTodo(todo));
-    } catch (e) {
+        dispatch(createTodo(todo as Todo));
+    } catch (e: any) {
         dispatch(displayAlert(e));
     }
 }
 
-export const deleteTodoRequest = (id) => async dispatch => {
+export const deleteTodoRequest = (id: number) => async (dispatch: any) => {
     try {
         const response = await fetch(`https://dummyjson.com/todos/${id}`, { method: 'DELETE'});
-        const todo = await response.json();
+        const todo = await response.json() as Todo;
         dispatch(removeTodo(todo.id));
-    } catch (e) {
+    } catch (e: any) {
         dispatch(displayAlert(e));
     }
 }
 
-export const markTodoCompletedRequest = (id) => async dispatch => {
+export const markTodoCompletedRequest = (id: number) => async (dispatch: any) => {
     try {
         const body = JSON.stringify({
             completed: true,
@@ -58,13 +60,13 @@ export const markTodoCompletedRequest = (id) => async dispatch => {
             body,
             method: 'PUT',
         });
-        const todo = await response.json();
+        const todo = await response.json() as Todo;
         dispatch(markCompleted(todo));
-    } catch (e) {
+    } catch (e: any) {
         dispatch(displayAlert(e));
     }
 }
 
-export const displayAlert = text => () => {
+export const displayAlert = (text: string) => () => {
     alert(text);
 };
