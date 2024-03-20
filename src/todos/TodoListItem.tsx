@@ -9,7 +9,7 @@ interface TodoProps {
 };
 
 interface TodoItemContainerProps {
-    createdBy: number;
+    createdby: number;
 }
 
 const TodoItemContainer = styled.div<TodoItemContainerProps>`
@@ -21,10 +21,10 @@ const TodoItemContainer = styled.div<TodoItemContainerProps>`
     box-shadow: 0 4px 8px grey;
 `;
 
-export const getBorderStyleForMyTodos = (createdBy: number) => createdBy === 1 ? '2px solid red' : 'none'
+export const getBorderStyleForMyTodos = (createdby: number) => createdby === 1 ? '2px solid red' : 'none'
 
 const TodoItemContainerWithWarning = styled(TodoItemContainer)`
-    border-bottom: ${(props: any) => getBorderStyleForMyTodos(props.createdBy)};
+    border-bottom: ${(props: any) => getBorderStyleForMyTodos(props.createdby)};
 `;
 
 const ButtonsContainer = styled.div`
@@ -55,7 +55,7 @@ const RemovedButton = styled(Button)`
 const TodoListItem = ({ todo, onRemoveTodo, onMarkCompleted }: TodoProps) => {
     const Container = todo.completed ? TodoItemContainer : TodoItemContainerWithWarning;
     return (
-        <Container createdBy={todo.userId}>
+        <Container createdby={todo.userId}>
             <h3>{todo.todo}</h3>
             {todo.userId == 1 ?
                 <h5>Created by me</h5>
