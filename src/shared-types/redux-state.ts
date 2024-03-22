@@ -1,8 +1,8 @@
-import { Todo } from "./todo-type";
+import { type Todo } from './todo-type'
 
-export type ReduxState = {
+export interface ReduxState {
   todos: {
-    isLoading: boolean;
-    data: [Todo];
-  };
-};
+    isLoading: boolean
+    data: [Todo]
+  }
+}
